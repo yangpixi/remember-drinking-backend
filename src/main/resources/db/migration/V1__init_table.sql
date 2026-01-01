@@ -1,7 +1,6 @@
 CREATE TABLE t_user (
     id BIGINT PRIMARY KEY,
 
-    public_id UUID DEFAULT gen_random_uuid() NOT NULL UNIQUE,
     username VARCHAR(30) NOT NULL UNIQUE,
     password TEXT NOT NULL,
     phone BIGINT NOT NULL,

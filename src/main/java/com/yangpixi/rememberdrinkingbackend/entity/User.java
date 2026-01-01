@@ -19,9 +19,6 @@ public class User {
     @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
 
-    @TableField("public_id")
-    private String publicId;
-
     @TableField("username")
     private String username;
 
