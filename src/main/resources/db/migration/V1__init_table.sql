@@ -21,7 +21,6 @@ CREATE INDEX idx_user_username ON t_user(username);
 CREATE INDEX idx_user_phone ON t_user(phone);
 
 COMMENT ON TABLE t_user IS '用户表';
-COMMENT ON COLUMN t_user.public_id IS '对外用户唯一标识';
 COMMENT ON COLUMN t_user.password IS '存储加密过后的密码(如果使用oauth2登录，则登录后必须设置一个密码)';
 
 CREATE TABLE t_role (

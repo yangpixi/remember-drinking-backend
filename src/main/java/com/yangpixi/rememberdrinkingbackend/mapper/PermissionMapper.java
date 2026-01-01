@@ -2,6 +2,7 @@ package com.yangpixi.rememberdrinkingbackend.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.yangpixi.rememberdrinkingbackend.entity.Permission;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * @author yangpixi
@@ -9,5 +10,6 @@ import com.yangpixi.rememberdrinkingbackend.entity.Permission;
  * @description
  */
 
+@Mapper
 public interface PermissionMapper extends BaseMapper<Permission> {
 }

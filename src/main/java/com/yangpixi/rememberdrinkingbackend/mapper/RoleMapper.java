@@ -2,6 +2,7 @@ package com.yangpixi.rememberdrinkingbackend.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.yangpixi.rememberdrinkingbackend.entity.Role;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * @author yangpixi
@@ -9,5 +10,6 @@ import com.yangpixi.rememberdrinkingbackend.entity.Role;
  * @description
  */
 
+@Mapper
 public interface RoleMapper extends BaseMapper<Role> {
 }
