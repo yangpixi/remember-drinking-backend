@@ -15,3 +15,8 @@ spring:
       idle-timeout: 30000
       max-lifetime: 1800000
       connection-timeout: 30000
+
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: t_

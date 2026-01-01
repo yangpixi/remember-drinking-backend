@@ -7,6 +7,6 @@ RETURNS TRIGGER AS $func$
 $func$ LANGUAGE 'plpgsql';
 
 CREATE TRIGGER update_users_updated_at
-    BEFORE UPDATE ON users
+    BEFORE UPDATE ON t_user
     FOR EACH ROW
     EXECUTE PROCEDURE update_updated_at_column();
