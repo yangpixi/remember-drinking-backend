@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yangpixi.rememberdrinkingbackend.entity.User;
 import com.yangpixi.rememberdrinkingbackend.mapper.UserMapper;
 import com.yangpixi.rememberdrinkingbackend.service.IUserService;
+import org.springframework.stereotype.Service;
 
 /**
  * @author yangpixi
@@ -11,5 +12,6 @@ import com.yangpixi.rememberdrinkingbackend.service.IUserService;
  * @description
  */
 
+@Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 }

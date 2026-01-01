@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yangpixi.rememberdrinkingbackend.entity.UserRole;
 import com.yangpixi.rememberdrinkingbackend.mapper.UserRoleMapper;
 import com.yangpixi.rememberdrinkingbackend.service.IUserRoleService;
+import org.springframework.stereotype.Service;
 
 /**
  * @author yangpixi
@@ -11,5 +12,6 @@ import com.yangpixi.rememberdrinkingbackend.service.IUserRoleService;
  * @description
  */
 
+@Service
 public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> implements IUserRoleService {
 }

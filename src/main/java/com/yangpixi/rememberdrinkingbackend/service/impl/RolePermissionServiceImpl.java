@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yangpixi.rememberdrinkingbackend.entity.RolePermission;
 import com.yangpixi.rememberdrinkingbackend.mapper.RolePermissionMapper;
 import com.yangpixi.rememberdrinkingbackend.service.IRolePermission;
+import org.springframework.stereotype.Service;
 
 /**
  * @author yangpixi
@@ -11,5 +12,6 @@ import com.yangpixi.rememberdrinkingbackend.service.IRolePermission;
  * @description
  */
 
+@Service
 public class RolePermissionServiceImpl extends ServiceImpl<RolePermissionMapper, RolePermission> implements IRolePermission {
 }
