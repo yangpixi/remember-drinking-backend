@@ -1,1 +1,17 @@
-spring.application.name=remember-drinking-backend
+spring:
+  application:
+    name: remember-drinking-backend
+  config:
+    import: classpath:secret.yml
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/water_service_db?currentSchema=public&reWriteBatchedInserts=true
+    username: postgres
+    hikari:
+      pool-name: HikariCP-Main
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
