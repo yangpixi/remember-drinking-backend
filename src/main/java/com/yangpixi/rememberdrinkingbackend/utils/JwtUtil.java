@@ -6,6 +6,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
@@ -15,15 +16,14 @@ import java.util.Date;
  * @description jwt 签发工具类
  */
 
+@Component
 public class JwtUtil {
 
-    private static String SECRET_KEY;
-    private final Algorithm algorithm = Algorithm.HMAC512(SECRET_KEY);
+    private final Algorithm algorithm;
     private static final int EXPIRE_TIME = 7 * 24 * 3600;
 
-    @Value("${com.yangpixi.secret_key}")
-    public void setSecretKey(String secretKey) {
-        SECRET_KEY = secretKey;
+    public JwtUtil(@Value("${com.yangpixi.secret_key}") String secretKey) {
+        algorithm = Algorithm.HMAC512(secretKey);
     }
 
     // 生成 token
@@ -37,7 +37,7 @@ public class JwtUtil {
     }
 
     // 解码 token
-    public DecodedJWT getDecodedToken(String token) {
+    public DecodedJWT decodedToken(String token) {
         try {
             JWTVerifier verifier = JWT
                     .require(algorithm)
@@ -50,12 +50,12 @@ public class JwtUtil {
 
     // 验证 token是否过期
     public Boolean isTokenExpired(String token) {
-        return getDecodedToken(token).getExpiresAt().before(new Date());
+        return decodedToken(token).getExpiresAt().before(new Date());
     }
 
     // 从 token中获取用户id
     public String getUserFormToken(String token) {
-        return getDecodedToken(token).getSubject();
+        return decodedToken(token).getSubject();
     }
 
 }
