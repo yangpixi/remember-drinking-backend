@@ -6,6 +6,8 @@ import com.yangpixi.rememberdrinkingbackend.mapper.UserRoleMapper;
 import com.yangpixi.rememberdrinkingbackend.service.IUserRoleService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author yangpixi
  * @date 2026/1/1 12:24
@@ -14,4 +16,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> implements IUserRoleService {
+    @Override
+    public List<Long> getByUserId(Long userId) {
+        return this.baseMapper.selectByUserId(userId);
+    }
 }

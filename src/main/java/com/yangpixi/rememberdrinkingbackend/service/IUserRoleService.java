@@ -1,7 +1,10 @@
 package com.yangpixi.rememberdrinkingbackend.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yangpixi.rememberdrinkingbackend.entity.Role;
 import com.yangpixi.rememberdrinkingbackend.entity.UserRole;
+
+import java.util.List;
 
 /**
  * @author yangpixi
@@ -10,4 +13,5 @@ import com.yangpixi.rememberdrinkingbackend.entity.UserRole;
  */
 
 public interface IUserRoleService extends IService<UserRole> {
+    List<Long> getByUserId(Long userId);
 }

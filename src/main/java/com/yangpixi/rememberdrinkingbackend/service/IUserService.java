@@ -10,4 +10,5 @@ import com.yangpixi.rememberdrinkingbackend.entity.User;
  */
 
 public interface IUserService extends IService<User> {
+    User getByUsername(String username);
 }
