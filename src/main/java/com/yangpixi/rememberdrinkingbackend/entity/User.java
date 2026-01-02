@@ -26,7 +26,7 @@ public class User {
     private String password;
 
     @TableField("phone")
-    private Long phone;
+    private String phone;
 
     @TableField("enabled")
     private Boolean enabled;

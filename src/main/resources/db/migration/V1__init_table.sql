@@ -15,7 +15,7 @@ CREATE TABLE t_user (
 );
 
 INSERT INTO t_user(id, username, password, phone)
-VALUES (1,'admin', 'test', 13327260090);
+VALUES (1,'admin', '$2a$10$1Sc6KoPfgEn9XZ621g4E1OpNGQclJHAm1rFqhxCHuIzbvqKF.pfYK', 123456);
 
 CREATE INDEX idx_user_username ON t_user(username);
 CREATE INDEX idx_user_phone ON t_user(phone);
