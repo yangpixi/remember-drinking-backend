@@ -2,10 +2,13 @@ package com.yangpixi.rememberdrinkingbackend.controller;
 
 import com.yangpixi.rememberdrinkingbackend.dto.ApiResponse;
 import com.yangpixi.rememberdrinkingbackend.dto.LoginRequest;
+import com.yangpixi.rememberdrinkingbackend.dto.RegisterRequest;
 import com.yangpixi.rememberdrinkingbackend.entity.User;
 import com.yangpixi.rememberdrinkingbackend.service.IAuthService;
 import com.yangpixi.rememberdrinkingbackend.utils.SecurityUtils;
 import com.yangpixi.rememberdrinkingbackend.vo.LoginSuccessVO;
+import jakarta.annotation.security.PermitAll;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +29,7 @@ public class AuthController {
     private final IAuthService authService;
 
     @PostMapping("/user/login")
+    @PermitAll
     public ApiResponse<LoginSuccessVO> login(@Validated @RequestBody LoginRequest request) {
         String token = authService.login(request.getUsername(), request.getPassword()); // 登录成功返回token
         User user;
@@ -38,6 +42,13 @@ public class AuthController {
         successVO.setToken(token);
         successVO.setUserId(user.getId());
         return ApiResponse.success(successVO);
+    }
+
+    @PostMapping("/user/register")
+    @PermitAll
+    public ApiResponse<String> register(@Validated @RequestBody RegisterRequest request) {
+        authService.register(request.getUsername(), request.getPassword(), request.getPhone());
+        return ApiResponse.success("注册成功");
     }
 
 }

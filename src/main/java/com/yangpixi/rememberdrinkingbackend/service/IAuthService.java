@@ -9,4 +9,7 @@ package com.yangpixi.rememberdrinkingbackend.service;
 public interface IAuthService {
 
     String login(String username, String password);
+
+    // 思考：如果参数较多，应该封装成一个dto对象进行参数传递
+    void register(String username, String password, String phone);
 }

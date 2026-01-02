@@ -57,7 +57,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(request ->
-                        request.requestMatchers("/auth/user/login").permitAll()
+                        request.requestMatchers("/auth/user/login", "/auth/user/register").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .logout(AbstractHttpConfigurer::disable);

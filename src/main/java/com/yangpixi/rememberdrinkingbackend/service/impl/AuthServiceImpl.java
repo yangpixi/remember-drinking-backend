@@ -1,19 +1,24 @@
 package com.yangpixi.rememberdrinkingbackend.service.impl;
 
+import com.yangpixi.rememberdrinkingbackend.BusinessException;
+import com.yangpixi.rememberdrinkingbackend.common.ErrorCode;
 import com.yangpixi.rememberdrinkingbackend.entity.User;
+import com.yangpixi.rememberdrinkingbackend.entity.UserRole;
 import com.yangpixi.rememberdrinkingbackend.service.CustomUserDetails;
 import com.yangpixi.rememberdrinkingbackend.service.IAuthService;
+import com.yangpixi.rememberdrinkingbackend.service.IUserRoleService;
+import com.yangpixi.rememberdrinkingbackend.service.IUserService;
 import com.yangpixi.rememberdrinkingbackend.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.StreamingHttpOutputMessage;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author yangpixi
@@ -27,6 +32,9 @@ import org.springframework.stereotype.Service;
 public class AuthServiceImpl implements IAuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
+    private final PasswordEncoder passwordEncoder;
+    private final IUserService userService;
+    private final IUserRoleService userRoleService;
 
     @Override
     public String login(String username, String password) {
@@ -53,5 +61,29 @@ public class AuthServiceImpl implements IAuthService {
         }
 
         return jwtUtil.generateToken(user.getId().toString());
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class) // 开启事务
+    public void register(String username, String password, String phone) {
+
+        // 检查用户名是否被使用
+        if (userService.getByUsername(username) != null) {
+            throw new BusinessException(ErrorCode.HAD_EXIST);
+        }
+
+        // 新建用户
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setPhone(phone);
+        userService.save(user);
+
+        // 插入对应的用户角色
+        UserRole userRole = new UserRole();
+        Long defaultUserRole = 2L;
+        userRole.setUserId(user.getId());
+        userRole.setRoleId(defaultUserRole);
+
     }
 }

@@ -17,7 +17,7 @@ public enum ErrorCode {
     METHOD_NOT_ALLOWED(405, "请求方法不支持"),
     SERVER_ERROR(500, "服务器内部错误"),
     OPERATION_ERROR(501, "操作失败"),
-    HAD_EXIST(420, "请勿重复添加");
+    HAD_EXIST(420, "用户名已被使用");
 
 
     private final int code;
