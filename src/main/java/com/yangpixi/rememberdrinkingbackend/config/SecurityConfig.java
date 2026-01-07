@@ -1,12 +1,9 @@
 package com.yangpixi.rememberdrinkingbackend.config;
 
-import com.yangpixi.rememberdrinkingbackend.dto.LoginRequest;
 import com.yangpixi.rememberdrinkingbackend.handler.CustomAccessDeniedHandler;
 import com.yangpixi.rememberdrinkingbackend.handler.CustomAuthenticationEntryPoint;
 import com.yangpixi.rememberdrinkingbackend.handler.JwtAuthenticationTokenFilter;
-import com.yangpixi.rememberdrinkingbackend.service.CustomUserDetails;
 import jakarta.annotation.Resource;
-import jakarta.servlet.FilterChain;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,7 +13,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;

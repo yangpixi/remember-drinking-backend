@@ -41,8 +41,8 @@ public class AuthServiceImpl implements IAuthService {
 
         // 创建空的认证token对象
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, password);
-        log.info(username);
-        log.info(password);
+//        log.info(username);
+//        log.info(password);
         User user = new User();
         try {
             // 认证
