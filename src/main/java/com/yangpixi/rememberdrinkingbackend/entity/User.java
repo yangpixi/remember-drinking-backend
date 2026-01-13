@@ -28,13 +28,16 @@ public class User {
     @TableField("phone")
     private String phone;
 
+    @TableField("avatar")
+    private String avatar;
+
     @TableField("enabled")
     private Boolean enabled;
 
     @TableField("account_non_expired")
     private Boolean accountNonExpired;
 
-    @TableField("account_nun_locked")
+    @TableField("account_non_locked")
     private Boolean accountNonLocked;
 
     @TableField("credentials_non_expired")
