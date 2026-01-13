@@ -37,7 +37,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     public UserDetails loadUserByUserId(String userId) {
-        User user = userService.getById(userId);
+        User user = userService.getById(Long.parseLong(userId));
         List<String> roleNames = getRoleNamesByUser(user);
         List<String> permissionNames = getPermissionNameByUser(user);
         return new CustomUserDetails(user, roleNames, permissionNames);
