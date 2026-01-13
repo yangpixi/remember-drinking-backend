@@ -57,7 +57,7 @@ public class AuthServiceImpl implements IAuthService {
             }
         } catch (AuthenticationException | NullPointerException e) {
             log.warn("用户名或密码错误");
-            throw new RuntimeException("用户名或密码错误");
+            throw new BusinessException(ErrorCode.USERNAME_PASSWORD_WRONG);
         }
 
         return jwtUtil.generateToken(user.getId().toString());
@@ -84,6 +84,6 @@ public class AuthServiceImpl implements IAuthService {
         Long defaultUserRole = 2L;
         userRole.setUserId(user.getId());
         userRole.setRoleId(defaultUserRole);
-
+        userRoleService.save(userRole);
     }
 }
