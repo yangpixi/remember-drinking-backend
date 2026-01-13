@@ -12,6 +12,7 @@ import lombok.Getter;
 public enum ErrorCode {
     PARAMS_ERROR(400, "参数错误"),
     NOT_LOGIN(401, "未登录或登录已过期"),
+    USERNAME_PASSWORD_WRONG(4001, "用户名或密码错误"),
     UNAUTHORIZED(403, "你没有访问该资源的权限"),
     NOT_FOUND(404, "请求的资源不存在"),
     METHOD_NOT_ALLOWED(405, "请求方法不支持"),
