@@ -4,12 +4,11 @@ import com.yangpixi.rememberdrinkingbackend.dto.ApiResponse;
 import com.yangpixi.rememberdrinkingbackend.entity.User;
 import com.yangpixi.rememberdrinkingbackend.service.IUserService;
 import com.yangpixi.rememberdrinkingbackend.utils.SecurityUtils;
+import com.yangpixi.rememberdrinkingbackend.vo.UserDetailsVO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -33,5 +32,14 @@ public class UserController {
         String filePath = "/uploads/avatar/" + userService.saveAvatar(file);
         userService.modifyUserAvatar(filePath, user.getId());
         return ApiResponse.success("更改头像成功");
+    }
+
+    @PreAuthorize("hasAuthority('record:add')")
+    @GetMapping("/details")
+    public ApiResponse<UserDetailsVO> getUseDetails() {
+        User user = SecurityUtils.getCurrentUser().orElseThrow(() -> new RuntimeException("无法获取当前用户"));
+        UserDetailsVO vo = new UserDetailsVO();
+        BeanUtils.copyProperties(user, vo);
+        return ApiResponse.success(vo);
     }
 }
