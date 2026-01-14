@@ -30,7 +30,7 @@ public class UserController {
     @PostMapping("/avatar/change")
     public ApiResponse<String> changeUserAvatar(@RequestParam("file") MultipartFile file) {
         User user = SecurityUtils.getCurrentUser().orElseThrow(() -> new RuntimeException("无法获取当前用户"));
-        String filePath = userService.saveAvatar(file);
+        String filePath = "/uploads/avatar/" + userService.saveAvatar(file);
         userService.modifyUserAvatar(filePath, user.getId());
         return ApiResponse.success("更改头像成功");
     }
