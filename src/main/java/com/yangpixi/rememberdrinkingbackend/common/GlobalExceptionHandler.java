@@ -11,6 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 /**
  * @author yangpixi
@@ -48,6 +49,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse<Object>> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
         ApiResponse<Object> apiResponse = ApiResponse.error(400, "参数传递有误或者缺少参数");
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+    }
+
+    @ExceptionHandler(NoResourceFoundException.class)
+    public ApiResponse<String> handelNoResourceFoundException(NoResourceFoundException ex) {
+        return ApiResponse.error(404, "请求的资源不存在");
     }
 
     /**
