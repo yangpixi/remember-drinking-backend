@@ -54,6 +54,7 @@ public class SecurityConfig {
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(request ->
                         request.requestMatchers("/auth/user/login", "/auth/user/register").permitAll()
+                                .requestMatchers("/uploads/avatar/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .logout(AbstractHttpConfigurer::disable);
