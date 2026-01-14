@@ -20,7 +20,7 @@ import java.util.Date;
 public class JwtUtil {
 
     private final Algorithm algorithm;
-    private static final int EXPIRE_TIME = 7 * 24 * 3600;
+    private static final int EXPIRE_TIME = 7 * 24 * 3600 * 1000;
 
     public JwtUtil(@Value("${com.yangpixi.secret_key}") String secretKey) {
         algorithm = Algorithm.HMAC512(secretKey);
