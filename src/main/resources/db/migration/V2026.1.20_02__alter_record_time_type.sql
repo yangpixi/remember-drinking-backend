@@ -1,0 +1,2 @@
+ALTER TABLE t_record
+ALTER COLUMN record_time TYPE BIGINT;
