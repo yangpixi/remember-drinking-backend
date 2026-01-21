@@ -30,6 +30,9 @@ public class Record {
     @TableField("record_time")
     private Long recordTime;
 
+    @TableField("is_deleted")
+    private Boolean isDeleted;
+
     @TableField("created_at")
     private OffsetDateTime createdAt;
 

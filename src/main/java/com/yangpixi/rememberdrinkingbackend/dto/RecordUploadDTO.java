@@ -13,12 +13,4 @@ import java.util.List;
 @Data
 public class RecordUploadDTO {
     private List<RecordDTO> recordList;
-
-    @Data
-    public static class RecordDTO {
-        private Integer amountMl;
-        private String recordId;
-        private Long recordTime;
-        private Boolean is_deleted;
-    }
 }
